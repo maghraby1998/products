@@ -1,0 +1,11 @@
+.input-style {
+  @apply block border p-2 border-slate-500 rounded w-[350px] my-1 outline-none;
+}
+
+.invalid-input-style {
+  @apply border-2 border-[red];
+}
+
+.error-message-style {
+  @apply text-[red] text-sm;
+}
