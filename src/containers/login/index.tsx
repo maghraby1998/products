@@ -21,7 +21,6 @@ interface Props {
 const Login: React.FC<Props> = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   const toast = useRef<any>(undefined);
-  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -44,7 +43,7 @@ const Login: React.FC<Props> = ({ setIsLoggedIn }) => {
   const onSubmit: SubmitHandler<LoginInputSchema> = (data) => {
     if (data.username === "user" && data.password === "123") {
       setIsLoggedIn(true);
-      navigate("/");
+      navigate("/products?limit=5");
     } else {
       showError();
     }
@@ -94,22 +93,16 @@ const Login: React.FC<Props> = ({ setIsLoggedIn }) => {
           type="submit"
           className="bg-slate-500 py-1 min-w-[100px] text-white capitalize rounded mx-auto block"
         >
-          {isLoading
-            ? // <ProgressSpinner
-              //   style={{
-              //     width: "30px",
-              //     height: "30px",
-              //   }}
-              //   strokeWidth="2"
-              //   fill="white"
-              //   animationDuration=".5s"
-              // />
-              "loading..."
-            : "login"}
+          login
         </button>
       </form>
 
-      <button onClick={handlePopulate}>populate</button>
+      <button
+        className="bg-yellow-500 py-1 mt-10 px-2 text-[#222] min-w-[100px] text-white capitalize rounded mx-auto block"
+        onClick={handlePopulate}
+      >
+        populate correct credentials
+      </button>
 
       <Toast ref={toast} />
     </div>

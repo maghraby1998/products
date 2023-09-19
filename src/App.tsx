@@ -13,27 +13,10 @@ import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { useState } from "react";
-
-// const isLoggedIn = false;
-
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     isLoggedIn ? (
-//       <Route path="/" element={<Layout />}>
-//         <Route path="products" element={<Products />} />
-//       </Route>
-//     ) : (
-//       <Route path="/">
-//         <Route index element={<Navigate to={"/login"} />} />
-//         <Route path="login" element={<Login />} />
-//         <Route path="*" element={<Navigate to={"/login"} />} />
-//       </Route>
-//     )
-//   )
-// );
+import Home from "./containers/home";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <PrimeReactProvider>
@@ -41,8 +24,11 @@ function App() {
         router={createBrowserRouter(
           createRoutesFromElements(
             isLoggedIn ? (
-              <Route path="/" element={<Layout />}>
-                <Route index element={<div>home page</div>} />
+              <Route
+                path="/"
+                element={<Layout setIsLoggedIn={setIsLoggedIn} />}
+              >
+                <Route index element={<Home />} />
                 <Route path="products" element={<Products />} />
               </Route>
             ) : (

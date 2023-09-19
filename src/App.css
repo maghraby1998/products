@@ -9,3 +9,11 @@
 .error-message-style {
   @apply text-[red] text-sm;
 }
+
+.page-container {
+  @apply p-5 ml-[100px];
+}
+
+.page-header {
+  @apply text-2xl font-semibold text-slate-500 border-b border-b-2 mb-5;
+}
