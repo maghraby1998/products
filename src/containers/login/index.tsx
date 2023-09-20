@@ -1,13 +1,9 @@
 import React, { Dispatch, SetStateAction, useRef, useState } from "react";
-import { InputText } from "primereact/inputtext";
-import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ProgressSpinner } from "primereact/progressspinner";
 import { useNavigate } from "react-router-dom";
 import { Toast } from "primereact/toast";
 import { LoginInputSchema, loginInputSchema } from "../../helpers/validations";
-import backgroundImage from "../../../public/background.jpg";
 
 interface Props {
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
@@ -110,7 +106,7 @@ const Login: React.FC<Props> = ({ setIsLoggedIn }) => {
       </div>
 
       <div className="flex-1 h-screen flex items-center justify-center">
-        <img src={backgroundImage} alt="" />
+        <img src={"/background.jpg"} alt="" />
       </div>
     </div>
   );
