@@ -17,3 +17,14 @@
 .page-header {
   @apply text-2xl font-semibold text-slate-500 border-b border-b-2 mb-5;
 }
+
+.product-form-dialog .p-dialog-title {
+  font-size: 18px !important;
+}
+
+.product-form-dialog .p-dialog-header-icons {
+  color: #fff !important;
+  align-self: unset !important;
+  background-color: #fff !important;
+  border-radius: 100%;
+}

@@ -6,13 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { useNavigate } from "react-router-dom";
 import { Toast } from "primereact/toast";
-
-const loginInputSchema = z.object({
-  username: z.string().min(1, { message: "Username is required!" }),
-  password: z.string().min(1, { message: "Password is required!" }),
-});
-
-type LoginInputSchema = z.infer<typeof loginInputSchema>;
+import { LoginInputSchema, loginInputSchema } from "../../helpers/validations";
+import backgroundImage from "../../../public/background.jpg";
 
 interface Props {
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
@@ -40,10 +35,16 @@ const Login: React.FC<Props> = ({ setIsLoggedIn }) => {
     });
   };
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit: SubmitHandler<LoginInputSchema> = (data) => {
     if (data.username === "user" && data.password === "123") {
-      setIsLoggedIn(true);
-      navigate("/products?limit=5");
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoggedIn(true);
+        setIsLoading(false);
+        navigate("/products?limit=5");
+      }, 1000);
     } else {
       showError();
     }
@@ -55,56 +56,62 @@ const Login: React.FC<Props> = ({ setIsLoggedIn }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
-      <h1 className="text-3xl text-slate-700 font-bold capitalize text-center mb-2">
-        login
-      </h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="my-5">
-          <input
-            id="username"
-            type="text"
-            placeholder="Username..."
-            className={`input-style ${
-              !!errors.username ? "invalid-input-style" : ""
-            }`}
-            {...register("username")}
-          />
-          {!!errors.username && (
-            <p className="error-message-style">{errors.username.message}</p>
-          )}
-        </div>
-        <div className="my-5">
-          <input
-            id="password"
-            type="text"
-            placeholder="Password..."
-            className={`input-style ${
-              !!errors.username ? "invalid-input-style" : ""
-            }`}
-            {...register("password")}
-          />
-          {!!errors.password && (
-            <p className="error-message-style">{errors.password.message}</p>
-          )}
-        </div>
+    <div className="flex-col md:flex-row flex items-center justify-center">
+      <div className="h-screen w-full py-3 flex-1 flex flex-col items-center justify-center bg-[#999]/10">
+        <h1 className="text-3xl text-slate-700 font-bold capitalize text-center mb-2">
+          Welcome
+        </h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="my-5">
+            <input
+              id="username"
+              type="text"
+              placeholder="Username..."
+              className={`input-style ${
+                !!errors.username ? "invalid-input-style" : ""
+              }`}
+              {...register("username")}
+            />
+            {!!errors.username && (
+              <p className="error-message-style">{errors.username.message}</p>
+            )}
+          </div>
+          <div className="my-5">
+            <input
+              id="password"
+              type="text"
+              placeholder="Password..."
+              className={`input-style ${
+                !!errors.username ? "invalid-input-style" : ""
+              }`}
+              {...register("password")}
+            />
+            {!!errors.password && (
+              <p className="error-message-style">{errors.password.message}</p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className="bg-slate-500 py-1 min-w-[100px] text-white capitalize rounded mx-auto block"
+          >
+            {isLoading ? <i className="pi pi-spinner pi-spin" /> : "login"}
+          </button>
+        </form>
 
         <button
-          type="submit"
-          className="bg-slate-500 py-1 min-w-[100px] text-white capitalize rounded mx-auto block"
+          className="bg-yellow-500 py-1 mt-10 px-2 text-[#222] min-w-[100px] text-white capitalize rounded mx-auto block"
+          onClick={handlePopulate}
         >
-          login
+          populate correct credentials
         </button>
-      </form>
 
-      <button
-        className="bg-yellow-500 py-1 mt-10 px-2 text-[#222] min-w-[100px] text-white capitalize rounded mx-auto block"
-        onClick={handlePopulate}
-      >
-        populate correct credentials
-      </button>
+        <Toast ref={toast} />
+      </div>
 
-      <Toast ref={toast} />
+      <div className="flex-1 h-screen flex items-center justify-center">
+        <img src={backgroundImage} alt="" />
+      </div>
     </div>
   );
 };
