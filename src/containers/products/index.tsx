@@ -267,7 +267,7 @@ const Products = () => {
 
   return (
     <div className="page-container">
-      <h1 className="page-header">Products</h1>
+      <h1 className="page-header">Products list</h1>
 
       <div className="flex items-center justify-between gap-3 h-[40px] mb-3 ">
         <input
