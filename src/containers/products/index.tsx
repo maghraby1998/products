@@ -132,7 +132,7 @@ const Products = () => {
         setValue("price", price?.toString() ?? "0");
         setValue("image", image);
       },
-      onError: (error) => {
+      onError: () => {
         setLoadingId(null);
       },
     });
@@ -252,7 +252,6 @@ const Products = () => {
 
   const {
     isLoading: productsLoading,
-    error,
     data,
     refetch,
   } = useQuery({

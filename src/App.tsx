@@ -9,7 +9,7 @@ import {
 import Layout from "./containers/layout";
 import Login from "./containers/login";
 import Products from "./containers/products";
-import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
+import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";

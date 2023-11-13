@@ -1,6 +1,6 @@
 import React, { BaseSyntheticEvent } from "react";
 import { Dialog } from "primereact/dialog";
-import { FieldErrors, SubmitHandler, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { ProductSchema } from "../helpers/validations";
 
 interface Props {
