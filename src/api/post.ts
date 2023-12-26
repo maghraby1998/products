@@ -22,11 +22,13 @@ export const addProduct = async ({
 };
 
 export const addUser = async (name: string) => {
-  return axios.post("http://localhost:5000/", {
+  return axios.post("https://products-back-pwtn.onrender.com/", {
     name,
   });
 };
 
 export const deleteUser = async (userId: number) => {
-  return axios.delete(`http://localhost:5000/delete/${userId}`);
+  return axios.delete(
+    `https://products-back-pwtn.onrender.com/delete/${userId}`
+  );
 };

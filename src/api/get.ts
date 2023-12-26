@@ -13,7 +13,7 @@ export const getProduct = async (id: number) => {
 };
 
 export const getUsers = async () => {
-  const response = await fetch(`http://localhost:5000/`);
+  const response = await fetch(`https://products-back-pwtn.onrender.com/`);
 
   return response.json();
 };
