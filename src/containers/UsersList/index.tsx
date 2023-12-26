@@ -87,17 +87,21 @@ const UsersList = () => {
         </button>
       </form>
 
+      <p data-testid="total-users">{usersData?.data?.length}</p>
+
       <div className="grid grid-cols-3 gap-3">
         {usersData?.data?.map((user: { id: number; name: string }) => {
           return (
             <div
               className="user-card flex items-center justify-between"
               key={user.id}
+              data-testid={`user-${user.id}`}
             >
               <p>{user.name}</p>
               <button
                 onClick={() => handleDeleteUser(user.id)}
                 className="bg-red-500 h-[30px] w-[30px] rounded-full text-white"
+                data-testid={`delete-${user.id}`}
               >
                 x
               </button>
