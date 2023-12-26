@@ -15,6 +15,7 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { useState } from "react";
 import Home from "./containers/home";
+import UsersList from "./containers/UsersList";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,6 +32,7 @@ function App() {
               >
                 <Route index element={<Home />} />
                 <Route path="products" element={<Products />} />
+                <Route path="users" element={<UsersList />} />
               </Route>
             ) : (
               <Route path="/">

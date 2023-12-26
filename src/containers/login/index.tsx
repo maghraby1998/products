@@ -39,7 +39,7 @@ const Login: React.FC<Props> = ({ setIsLoggedIn }) => {
       setTimeout(() => {
         setIsLoggedIn(true);
         setIsLoading(false);
-        navigate("/products?limit=5");
+        navigate("/users");
       }, 1000);
     } else {
       showError();
@@ -98,6 +98,7 @@ const Login: React.FC<Props> = ({ setIsLoggedIn }) => {
         <button
           className="bg-yellow-500 py-1 mt-10 px-2 text-[#222] min-w-[100px] text-white capitalize rounded mx-auto block"
           onClick={handlePopulate}
+          data-testid={"populate-btn"}
         >
           populate correct credentials
         </button>

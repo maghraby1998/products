@@ -4,6 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 const links = [
   { label: "home", to: "/" },
   { label: "products", to: "/products?limit=5" },
+  { label: "users", to: "/users" },
 ];
 interface Props {
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;

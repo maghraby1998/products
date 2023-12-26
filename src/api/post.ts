@@ -1,3 +1,4 @@
+import axios from "axios";
 import { ProductSchema } from "../helpers/validations";
 
 export const addProduct = async ({
@@ -18,4 +19,14 @@ export const addProduct = async ({
     }),
   });
   return response.json();
+};
+
+export const addUser = async (name: string) => {
+  return axios.post("http://localhost:5000/", {
+    name,
+  });
+};
+
+export const deleteUser = async (userId: number) => {
+  return axios.delete(`http://localhost:5000/delete/${userId}`);
 };

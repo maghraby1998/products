@@ -28,3 +28,10 @@
   background-color: #fff !important;
   border-radius: 100%;
 }
+
+.user-card {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 5px;
+  padding: 10px;
+  height: 60px;
+}
