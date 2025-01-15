@@ -52,7 +52,7 @@ function App() {
 
     // Clean up the interval
     return () => clearInterval(interval);
-  }, []);
+  }, [dir]);
 
   return (
     <PrimeReactProvider>
