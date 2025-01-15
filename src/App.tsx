@@ -13,12 +13,46 @@ import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Home from "./containers/home";
 import UsersList from "./containers/UsersList";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [dir, setDir] = useState("ltr");
+
+  const handleToggleDir = () => {
+    setDir((prev) => (prev == "ltr" ? "rtl" : "ltr"));
+  };
+
+  useEffect(() => {
+    const adjustFeedbackButton = () => {
+      const feedbackButton = document.querySelector("._hj-fb") as any;
+
+      if (feedbackButton) {
+        const isRTL = dir == "rtl";
+
+        if (isRTL) {
+          // Move button to "Middle Left" for RTL layout
+          feedbackButton.style.right = "unset";
+          feedbackButton.style.left = "20px"; // Adjust as needed
+        } else {
+          // Default: "Middle Right"
+          feedbackButton.style.left = "unset";
+          feedbackButton.style.right = "20px"; // Adjust as needed
+        }
+      }
+    };
+
+    // Periodically check for the Hotjar button (as it loads dynamically)
+    const interval = setInterval(() => {
+      adjustFeedbackButton();
+    }, 500);
+
+    // Clean up the interval
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <PrimeReactProvider>
@@ -39,7 +73,12 @@ function App() {
                 <Route index element={<Navigate to={"/login"} />} />
                 <Route
                   path="login"
-                  element={<Login setIsLoggedIn={setIsLoggedIn} />}
+                  element={
+                    <Login
+                      setIsLoggedIn={setIsLoggedIn}
+                      handleToggleDir={handleToggleDir}
+                    />
+                  }
                 />
                 <Route path="*" element={<Navigate to={"/login"} />} />
               </Route>

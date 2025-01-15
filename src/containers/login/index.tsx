@@ -7,9 +7,10 @@ import { LoginInputSchema, loginInputSchema } from "../../helpers/validations";
 
 interface Props {
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
+  handleToggleDir: any;
 }
 
-const Login: React.FC<Props> = ({ setIsLoggedIn }) => {
+const Login: React.FC<Props> = ({ setIsLoggedIn, handleToggleDir }) => {
   const navigate = useNavigate();
   const toast = useRef<any>(undefined);
 
@@ -109,6 +110,8 @@ const Login: React.FC<Props> = ({ setIsLoggedIn }) => {
       <div className="flex-1 h-screen flex items-center justify-center">
         <img src={"/background.jpg"} alt="" />
       </div>
+
+      <button onClick={handleToggleDir}>change dir</button>
     </div>
   );
 };
